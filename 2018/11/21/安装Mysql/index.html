@@ -109,14 +109,14 @@
 
 
   <meta name="description" content="安装环境： CentOS 6 x86_64 安装Apache安装httpd 和 mod_ssl1yum install httpd mod_ssl  httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。apache2 以上的版本改称为httpdmod_ssl 是Apache使用数字证书的模块  启动Apache服">
-<meta name="keywords" content="Mysql">
+<meta name="keywords" content="Mysql,Apache">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 安装 Apache 和 Mysql">
 <meta property="og:url" content="http://yoursite.com/2018/11/21/安装Mysql/index.html">
 <meta property="og:site_name" content="曾经の黑">
 <meta property="og:description" content="安装环境： CentOS 6 x86_64 安装Apache安装httpd 和 mod_ssl1yum install httpd mod_ssl  httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。apache2 以上的版本改称为httpdmod_ssl 是Apache使用数字证书的模块  启动Apache服">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T03:58:50.735Z">
+<meta property="og:updated_time" content="2018-11-21T06:22:19.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 安装 Apache 和 Mysql">
 <meta name="twitter:description" content="安装环境： CentOS 6 x86_64 安装Apache安装httpd 和 mod_ssl1yum install httpd mod_ssl  httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。apache2 以上的版本改称为httpdmod_ssl 是Apache使用数字证书的模块  启动Apache服">
@@ -391,7 +391,7 @@
                 
               
 
-              <time title="创建时间：2018-11-21 10:32:10 / 修改时间：11:58:50" itemprop="dateCreated datePublished" datetime="2018-11-21T10:32:10+08:00">2018-11-21</time>
+              <time title="创建时间：2018-11-21 10:32:10 / 修改时间：14:22:19" itemprop="dateCreated datePublished" datetime="2018-11-21T10:32:10+08:00">2018-11-21</time>
             
 
             
@@ -463,14 +463,16 @@
 <h3 id="配置Apache-服务自动运行"><a href="#配置Apache-服务自动运行" class="headerlink" title="配置Apache 服务自动运行"></a>配置Apache 服务自动运行</h3><p>以上操作，Apache 服务是不能再重启后自动打开的，如果需要自动打开，执行以下命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> sudo /sbin/chkconfig httpd on</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">测试是否已经能自动启动</span><br></pre></td></tr></table></figure>
 <p> sudo /sbin/chkconfig –list httpd<br> httpd           0:off        1:off  2:on    3:on    4:on    5:on    6:off<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 安装Mysql</span><br></pre></td></tr></table></figure></p>
-<p>yum install mysql mysql-server ## 执行安装操作<br>service mysqld start ## 启动<br>iptables -I INPUT -p tcp –dport 3306 -j ACCEPT ##开放3306 端口<br>sudo service iptables save ## 保存<br>service iptables restart ## 重启防火墙<br>mysql -u root -p # 登录mysql 默认是没有密码的，可以直接回车<br>SET PASSWORD FOR ‘root‘@’localhost’ = PASSWORD(‘root’); ##设置Root 密码</p>
+<p>yum install mysql mysql-server ## 执行安装操作<br>service mysqld start ## 启动<br>iptables -I INPUT -p tcp –dport 3306 -j ACCEPT ##开放3306 端口<br>sudo service iptables save ## 保存<br>service iptables restart ## 重启防火墙<br>mysql -u root -p # 登录mysql 默认是没有密码的，可以直接回车<br>SET PASSWORD FOR ‘root‘@’localhost’ = PASSWORD(‘root’); ##设置Root 密码<br>CREATE USER ‘root‘@’%’ IDENTIFIED BY ‘root’; ## 创建新用户</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 如果默认设置有密码，使用以下命令行查看密码</span><br></pre></td></tr></table></figure>
 <p>grep ‘temporary password’ /var/log/mysqld.log</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 修改Mysql 字符集</span><br><span class="line"></span><br><span class="line">查看当前的字符集，登录mysql 执行以下sql</span><br></pre></td></tr></table></figure>
 <p>show variables like ‘character_set%’;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在 */etc/my.cnf* 中修改字符集</span><br></pre></td></tr></table></figure></p>
-<p>[client]<br>default-character-set=utf8<br>[mysqld]<br>character-set-server=utf8<br>collation-server=utf8_general_ci<br><code>`</code></p>
+<p>[client]<br>default-character-set=utf8<br>[mysqld]<br>character-set-server=utf8<br>collation-server=utf8_general_ci<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 使用客户端连接Mysql 的时候， 遇到 `Access denied for user &apos;root&apos;@&apos;127.0.0.1&apos; (using password: YES)`</span><br><span class="line"></span><br><span class="line">这是因为用户权限不够，需要执行以下SQL, 其中 `*.*` 表示全部的数据库表，`%` 表示所有的IP地址， `xxx`表示设置的密码</span><br></pre></td></tr></table></figure></p>
+<p>grant all privileges on <em>.</em> to ‘user‘@’%’ identified by ‘xxx’;<br><code>`</code></p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://blog.csdn.net/Hellovictoria/article/details/39343331" target="_blank" rel="noopener">HTTPD SSL mod_ssl mod_nss</a></p>
 <p><a href="https://support.rackspace.com/how-to/centos-6-apache-and-php-install/" target="_blank" rel="noopener">Install Apache and PHP on CentOS 6</a></p>
+<p><a href="https://blog.csdn.net/sunset108/article/details/48418107" target="_blank" rel="noopener">【MySQL】Access denied for user ‘root‘@’127.0.0.1’ (using password: YES)解决方法</a></p>
 
       
     </div>
@@ -496,6 +498,8 @@
           
             <a href="/tags/Mysql/" rel="tag"># Mysql</a>
           
+            <a href="/tags/Apache/" rel="tag"># Apache</a>
+          
         </div>
       
 
@@ -516,6 +520,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/21/常用的Linux命令/" rel="prev" title="常用的Linux命令">
+                常用的Linux命令 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -590,7 +598,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -626,7 +634,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
