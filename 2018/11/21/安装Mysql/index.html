@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="曾经の黑">
 <meta property="og:description" content="安装环境： CentOS 6 x86_64 安装Apache安装httpd 和 mod_ssl1yum install httpd mod_ssl  httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。apache2 以上的版本改称为httpdmod_ssl 是Apache使用数字证书的模块  启动Apache服">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T06:22:19.340Z">
+<meta property="og:updated_time" content="2018-11-21T07:32:03.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 安装 Apache 和 Mysql">
 <meta name="twitter:description" content="安装环境： CentOS 6 x86_64 安装Apache安装httpd 和 mod_ssl1yum install httpd mod_ssl  httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。apache2 以上的版本改称为httpdmod_ssl 是Apache使用数字证书的模块  启动Apache服">
@@ -393,7 +393,7 @@
                 
               
 
-              <time title="创建时间：2018-11-21 10:32:10 / 修改时间：14:22:19" itemprop="dateCreated datePublished" datetime="2018-11-21T10:32:10+08:00">2018-11-21</time>
+              <time title="创建时间：2018-11-21 10:32:10 / 修改时间：15:32:03" itemprop="dateCreated datePublished" datetime="2018-11-21T10:32:10+08:00">2018-11-21</time>
             
 
             
@@ -471,10 +471,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 修改Mysql 字符集</span><br><span class="line"></span><br><span class="line">查看当前的字符集，登录mysql 执行以下sql</span><br></pre></td></tr></table></figure>
 <p>show variables like ‘character_set%’;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在 */etc/my.cnf* 中修改字符集</span><br></pre></td></tr></table></figure></p>
 <p>[client]<br>default-character-set=utf8<br>[mysqld]<br>character-set-server=utf8<br>collation-server=utf8_general_ci<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 使用客户端连接Mysql 的时候， 遇到 `Access denied for user &apos;root&apos;@&apos;127.0.0.1&apos; (using password: YES)`</span><br><span class="line"></span><br><span class="line">这是因为用户权限不够，需要执行以下SQL, 其中 `*.*` 表示全部的数据库表，`%` 表示所有的IP地址， `xxx`表示设置的密码</span><br></pre></td></tr></table></figure></p>
-<p>grant all privileges on <em>.</em> to ‘user‘@’%’ identified by ‘xxx’;<br><code>`</code></p>
+<p>grant all privileges on <em>.</em> to ‘user‘@’%’ identified by ‘xxx’;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 安装JDK </span><br><span class="line">1. 从[Oracle官网](https://www.oracle.com/technetwork/java/javase/downloads/index.html) 获取到要下载版本的JDK</span><br><span class="line"></span><br><span class="line">2. 替换以下命令中的URL</span><br></pre></td></tr></table></figure></p>
+<p>wget –no-cookies –no-check-certificate –header “Cookie: gpw_e24=http%3A%2F%2F<a href="http://www.oracle.com%2F" target="_blank" rel="noopener">www.oracle.com%2F</a>; oraclelicense=accept-securebackup-cookie” <a href="http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.rpm" target="_blank" rel="noopener">http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.rpm</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 使用RPM 安装</span><br></pre></td></tr></table></figure></p>
+<p>rpm -ivh jdk-8u161-linux-x64.rpm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 验证</span><br></pre></td></tr></table></figure></p>
+<p>rpm -qa | grep -E ‘^(java|jdk)’<br>java -version<br><code>`</code></p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://blog.csdn.net/Hellovictoria/article/details/39343331" target="_blank" rel="noopener">HTTPD SSL mod_ssl mod_nss</a></p>
 <p><a href="https://support.rackspace.com/how-to/centos-6-apache-and-php-install/" target="_blank" rel="noopener">Install Apache and PHP on CentOS 6</a></p>
 <p><a href="https://blog.csdn.net/sunset108/article/details/48418107" target="_blank" rel="noopener">【MySQL】Access denied for user ‘root‘@’127.0.0.1’ (using password: YES)解决方法</a></p>
+<p><a href="http://www.cnblogs.com/shanyou/p/8449456.html" target="_blank" rel="noopener">CentOS 7 安装Java 1.8</a></p>
 
       
     </div>
