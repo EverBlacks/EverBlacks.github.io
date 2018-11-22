@@ -110,18 +110,18 @@
 
 
 
-  <meta name="description" content="环境： tomcat 8.5.35  远程访问Manager App   在$CATALINA_HOME/conf/tomcat-users.xml 中添加用户角色配置  1234567&amp;lt;role rolename=&amp;quot;tomcat&amp;quot;/&amp;gt;&amp;lt;role rolename=&amp;quot;role1&amp;quot;/&amp;gt;&amp;lt;role rolename=&amp;quot;m">
+  <meta name="description" content="环境： tomcat 8.5.35  远程访问Manager App   在$CATALINA_HOME/conf/tomcat-users.xml 中添加用户角色配置">
 <meta name="keywords" content="Tomcat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tomcat配置">
 <meta property="og:url" content="http://yoursite.com/2018/11/22/Tomcat配置/index.html">
 <meta property="og:site_name" content="曾经の黑">
-<meta property="og:description" content="环境： tomcat 8.5.35  远程访问Manager App   在$CATALINA_HOME/conf/tomcat-users.xml 中添加用户角色配置  1234567&amp;lt;role rolename=&amp;quot;tomcat&amp;quot;/&amp;gt;&amp;lt;role rolename=&amp;quot;role1&amp;quot;/&amp;gt;&amp;lt;role rolename=&amp;quot;m">
+<meta property="og:description" content="环境： tomcat 8.5.35  远程访问Manager App   在$CATALINA_HOME/conf/tomcat-users.xml 中添加用户角色配置">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-22T07:36:47.905Z">
+<meta property="og:updated_time" content="2018-11-22T07:58:38.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat配置">
-<meta name="twitter:description" content="环境： tomcat 8.5.35  远程访问Manager App   在$CATALINA_HOME/conf/tomcat-users.xml 中添加用户角色配置  1234567&amp;lt;role rolename=&amp;quot;tomcat&amp;quot;/&amp;gt;&amp;lt;role rolename=&amp;quot;role1&amp;quot;/&amp;gt;&amp;lt;role rolename=&amp;quot;m">
+<meta name="twitter:description" content="环境： tomcat 8.5.35  远程访问Manager App   在$CATALINA_HOME/conf/tomcat-users.xml 中添加用户角色配置">
 
 
 
@@ -393,7 +393,7 @@
                 
               
 
-              <time title="创建时间：2018-11-22 15:18:08 / 修改时间：15:36:47" itemprop="dateCreated datePublished" datetime="2018-11-22T15:18:08+08:00">2018-11-22</time>
+              <time title="创建时间：2018-11-22 15:18:08 / 修改时间：15:58:38" itemprop="dateCreated datePublished" datetime="2018-11-22T15:18:08+08:00">2018-11-22</time>
             
 
             
@@ -454,11 +454,12 @@
 <li>远程访问Manager App</li>
 </ul>
 <ol>
-<li>在<code>$CATALINA_HOME/conf/tomcat-users.xml</code> 中添加用户角色配置</li>
-</ol>
+<li><p>在<code>$CATALINA_HOME/conf/tomcat-users.xml</code> 中添加用户角色配置</p>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;role rolename=&quot;tomcat&quot;/&gt;</span><br><span class="line">&lt;role rolename=&quot;role1&quot;/&gt;</span><br><span class="line">&lt;role rolename=&quot;manager-gui&quot;/&gt;</span><br><span class="line">&lt;role rolename=&quot;admin-gui&quot;/&gt;</span><br><span class="line">&lt;user username=&quot;tomcat&quot; password=&quot;password&quot; roles=&quot;tomcat,manager-gui,admin-gui&quot;/&gt;</span><br><span class="line">&lt;user username=&quot;both&quot; password=&quot;password&quot; roles=&quot;tomcat,role1&quot;/&gt;</span><br><span class="line">&lt;user username=&quot;role1&quot; password=&quot;password&quot; roles=&quot;role1&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>因为在8.X版本中，添加了限制除本机之外的浏览器访问Manager App, 所以需要在<code>$CATALINA_HOME/webapps/host-manager/META-INF/context.xml</code> <em>注意</em>不是<code>conf/context.xml</code>中注掉以下限制代码，保存并重启tomcat即可。 <strong>不推荐在生产环境中使用！！！</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    &lt;Context antiResourceLocking=&quot;false&quot; privileged=&quot;true&quot; &gt;</span><br><span class="line">&lt;!--</span><br><span class="line">     &lt;Valve className=&quot;org.apache.catalina.valves.RemoteAddrValve&quot;</span><br><span class="line">             allow=&quot;127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1&quot; /&gt;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure></li>
+</li>
+<li><p>因为在8.X版本中，添加了限制除本机之外的浏览器访问Manager App, 所以需要在<code>$CATALINA_HOME/webapps/host-manager/META-INF/context.xml</code> <em>注意</em>不是<code>conf/context.xml</code>中注掉以下限制代码，保存并重启tomcat即可。 <strong>不推荐在生产环境中使用！！！</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    &lt;Context antiResourceLocking=&quot;false&quot; privileged=&quot;true&quot; &gt;</span><br><span class="line">&lt;!--</span><br><span class="line">     &lt;Valve className=&quot;org.apache.catalina.valves.RemoteAddrValve&quot;</span><br><span class="line">             allow=&quot;127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1&quot; /&gt;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
