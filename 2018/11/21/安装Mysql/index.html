@@ -113,14 +113,14 @@
   <meta name="description" content="安装环境： CentOS 6 x86_64 安装Apache安装httpd 和 mod_ssl1yum install httpd mod_ssl  httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。apache2 以上的版本改称为httpdmod_ssl 是Apache使用数字证书的模块  启动Apache服">
 <meta name="keywords" content="Mysql,Apache">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 安装 Apache 和 Mysql">
+<meta property="og:title" content="CentOS Java 开发环境配置">
 <meta property="og:url" content="http://yoursite.com/2018/11/21/安装Mysql/index.html">
 <meta property="og:site_name" content="曾经の黑">
 <meta property="og:description" content="安装环境： CentOS 6 x86_64 安装Apache安装httpd 和 mod_ssl1yum install httpd mod_ssl  httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。apache2 以上的版本改称为httpdmod_ssl 是Apache使用数字证书的模块  启动Apache服">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T07:32:03.684Z">
+<meta property="og:updated_time" content="2018-11-21T08:35:04.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 安装 Apache 和 Mysql">
+<meta name="twitter:title" content="CentOS Java 开发环境配置">
 <meta name="twitter:description" content="安装环境： CentOS 6 x86_64 安装Apache安装httpd 和 mod_ssl1yum install httpd mod_ssl  httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。apache2 以上的版本改称为httpdmod_ssl 是Apache使用数字证书的模块  启动Apache服">
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>CentOS 安装 Apache 和 Mysql | 曾经の黑</title>
+  <title>CentOS Java 开发环境配置 | 曾经の黑</title>
   
 
 
@@ -368,7 +368,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CentOS 安装 Apache 和 Mysql
+          <h2 class="post-title" itemprop="name headline">CentOS Java 开发环境配置
               
             
           </h2>
@@ -393,7 +393,7 @@
                 
               
 
-              <time title="创建时间：2018-11-21 10:32:10 / 修改时间：15:32:03" itemprop="dateCreated datePublished" datetime="2018-11-21T10:32:10+08:00">2018-11-21</time>
+              <time title="创建时间：2018-11-21 10:32:10 / 修改时间：16:35:04" itemprop="dateCreated datePublished" datetime="2018-11-21T10:32:10+08:00">2018-11-21</time>
             
 
             
@@ -475,10 +475,19 @@
 <p>wget –no-cookies –no-check-certificate –header “Cookie: gpw_e24=http%3A%2F%2F<a href="http://www.oracle.com%2F" target="_blank" rel="noopener">www.oracle.com%2F</a>; oraclelicense=accept-securebackup-cookie” <a href="http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.rpm" target="_blank" rel="noopener">http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.rpm</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 使用RPM 安装</span><br></pre></td></tr></table></figure></p>
 <p>rpm -ivh jdk-8u161-linux-x64.rpm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 验证</span><br></pre></td></tr></table></figure></p>
 <p>rpm -qa | grep -E ‘^(java|jdk)’<br>java -version<br><code>`</code></p>
+<h2 id="安装TomCat"><a href="#安装TomCat" class="headerlink" title="安装TomCat"></a>安装TomCat</h2><ol>
+<li>下载Tomcata </li>
+<li>通过FileZilla 或者其它的FTP 工具上传到服务器 或者直接使用 wget 下载 <code>wget tomcat-download-url</code></li>
+<li>解压 <code>tar -zxv -f apache-tomcat-8.5.5.tar.gz</code></li>
+<li>启动Tomcat  <code>tomcatPath/bin/startup.sh</code></li>
+<li>开启<em>8080</em>端口 </li>
+<li>验证 浏览器访问<code>http://your IP Address:8080</code></li>
+</ol>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://blog.csdn.net/Hellovictoria/article/details/39343331" target="_blank" rel="noopener">HTTPD SSL mod_ssl mod_nss</a></p>
 <p><a href="https://support.rackspace.com/how-to/centos-6-apache-and-php-install/" target="_blank" rel="noopener">Install Apache and PHP on CentOS 6</a></p>
 <p><a href="https://blog.csdn.net/sunset108/article/details/48418107" target="_blank" rel="noopener">【MySQL】Access denied for user ‘root‘@’127.0.0.1’ (using password: YES)解决方法</a></p>
 <p><a href="http://www.cnblogs.com/shanyou/p/8449456.html" target="_blank" rel="noopener">CentOS 7 安装Java 1.8</a></p>
+<p><a href="http://os.51cto.com/art/201609/517037.htm" target="_blank" rel="noopener">CenOS 安装JDK的三种方法</a></p>
 
       
     </div>
@@ -604,7 +613,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -644,7 +653,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -694,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Apache"><span class="nav-number">1.</span> <span class="nav-text">安装Apache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装httpd-和-mod-ssl"><span class="nav-number">1.1.</span> <span class="nav-text">安装httpd 和 mod_ssl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动Apache服务"><span class="nav-number">1.2.</span> <span class="nav-text">启动Apache服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Apache-服务自动运行"><span class="nav-number">1.3.</span> <span class="nav-text">配置Apache 服务自动运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">2.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Apache"><span class="nav-number">1.</span> <span class="nav-text">安装Apache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装httpd-和-mod-ssl"><span class="nav-number">1.1.</span> <span class="nav-text">安装httpd 和 mod_ssl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动Apache服务"><span class="nav-number">1.2.</span> <span class="nav-text">启动Apache服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Apache-服务自动运行"><span class="nav-number">1.3.</span> <span class="nav-text">配置Apache 服务自动运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装TomCat"><span class="nav-number">2.</span> <span class="nav-text">安装TomCat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
